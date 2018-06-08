@@ -1,0 +1,3 @@
+export const homeTypes = {
+  UPDATE_REIMBURSEMNTS: 'UPDATE_REIMBURSMENTS',
+}

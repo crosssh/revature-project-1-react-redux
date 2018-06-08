@@ -7,6 +7,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './Store';
 import { SignInContainer } from './components/sign-in/sign-in.container';
+import { HomeContainer } from './components/home/home.container';
 
 class App extends React.Component<any, any> {
 
@@ -18,6 +19,7 @@ class App extends React.Component<any, any> {
             <NavComponent />
             <Switch>
               <Route path="/sign-in" component={SignInContainer} />
+              <Route path="/home" component={HomeContainer} />
             </Switch>
           </div>
         </HashRouter>

@@ -42,7 +42,7 @@ export class SignInComponent extends React.Component<any, any> {
       })
       .then(data => {
         console.log(data);
-        this.props.history.push('/clicker');
+        this.props.history.push('/home');
       })
       .catch(err => {
         this.props.updateError('Unable to log in at this time, please try again later');
