@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
 import { IState } from '../../reducers';
-import { updateReimbursement } from '../../actions/home/home.actions';
-import { HomeComponent } from './home.component';
+import { TicketingComponent } from './ticketing.component';
+import { addItem, updateAmount, updateDate, updateDescription, updateTitle } from '../../actions/ticketing/ticketing.actions'
 
-const mapStateToProps = (state: IState) => (state.home);
+const mapStateToProps = (state: IState) => (state.ticketing);
 
 export const mapDispatchToProps = {
-  updateReimbursement,
+  addItem,
+  updateAmount,
+  updateDate,
+  updateDescription,
+  updateTitle,
 }
 
-export const HomeContainer = connect(
+export const TicketingContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(HomeComponent);
+)(TicketingComponent);
