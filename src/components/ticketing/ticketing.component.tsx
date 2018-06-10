@@ -1,16 +1,16 @@
 import * as React from 'react';
-// import { ITicketing } from '../../reducers';
+import { ITicketing } from '../../reducers';
 
-// interface IProps extends ITicketing {
-//   addItem: (amount: number, date: string, description: string, title: string) => void
-//   submit: (items: any[]) => void
-//   updateAmount: (amount: number) => void
-//   updateDate: (date: string) => void
-//   updateDescription: (description: string) => void
-//   updateTitle: (title: string) => void
-// }
+interface IProps extends ITicketing {
+  addItem: (amount: number, date: string, description: string, title: string) => void
+  submit: (items: any[]) => void
+  updateAmount: (amount: number) => void
+  updateDate: (date: string) => void
+  updateDescription: (description: string) => void
+  updateTitle: (title: string) => void
+}
 
-export class TicketingComponent extends React.Component<any, any> {
+export class TicketingComponent extends React.Component<IProps, any> {
 
   constructor(props: any) {
     super(props);
@@ -22,6 +22,7 @@ export class TicketingComponent extends React.Component<any, any> {
     this.props.addItem(this.props.amount, this.props.date, this.props.description, this.props.title);
   }
 
+  // Add error messagese that appear if error occurs.
   public submit = (e: any) => {
 
     const ticket = {
@@ -56,7 +57,7 @@ export class TicketingComponent extends React.Component<any, any> {
       return;
     })
     .then(data => {
-      this.props.history.push('/home');
+      this.context.history.push('/home');
     })
     .catch(err => {
       console.log(err);

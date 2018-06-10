@@ -1,0 +1,4 @@
+export const ticketManagerTypes = {
+  GET_PENDING_TICKETS: 'GET_PENDING_TICKETS',
+  SET_CURRENT_TICKET: 'SET_CURRENT_TICKET',
+}
