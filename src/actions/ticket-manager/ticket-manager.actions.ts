@@ -28,15 +28,6 @@ export const getPendingTickets = () => (dispatch: any) => {
   })
 }
 
-export const setCurrentTicket = (ticket: any) => {
-  return {
-    payload: {
-      ticket
-    },
-    type: ticketManagerTypes.SET_CURRENT_TICKET
-  }
-}
-
 export const updateTicketingError = (ticketingErrorMessage: any) => {
   return {
     payload: {

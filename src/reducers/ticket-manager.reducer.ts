@@ -16,11 +16,6 @@ export const ticketManagerReducer = (state = initialState, action: any) => {
         ...state,
         tickets: action.payload.tickets,
       };
-      case ticketManagerTypes.SET_CURRENT_TICKET:
-      return {
-        ...state,
-        ticket: action.payload.ticket,
-      }
       case ticketManagerTypes.UPDATE_TICKETING_ERROR:
       return {
         ...state,
