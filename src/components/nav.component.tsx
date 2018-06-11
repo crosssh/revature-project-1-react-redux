@@ -19,7 +19,7 @@ export const NavComponent: React.StatelessComponent<{}> = () => {
             </li>
             <li className="nav-item active dropdown">
               <a className="nav-link dropdown-toggle pointer" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage Ticketing</a>
-              <div className="dropdown-menu" aria-labelledby="dropdown04">
+              <div className="dropdown-menu dropdown-primary my-drop-down-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" aria-labelledby="navbarDropdownMenuLink">
                 <div className="dropdown-item"><Link to="/approved" className="unset-anchor nav-link active">Approved</Link></div>
                 <div className="dropdown-item"><Link to="/denied" className="unset-anchor nav-link active">Denied</Link></div>
                 <div className="dropdown-item"><Link to="/pending" className="unset-anchor nav-link active">Pending</Link></div>

@@ -22,7 +22,7 @@ export class SignInComponent extends React.Component<any, any> {
     e.preventDefault();
     const { username, password } = this.props; // destructuring
     fetch('http://localhost:3001/users/login', {
-      body: JSON.stringify({username, password}),
+      body: JSON.stringify({ username, password }),
       credentials: 'include',
       headers: {
         'content-type': 'application/json'
@@ -33,7 +33,7 @@ export class SignInComponent extends React.Component<any, any> {
         console.log(resp.status)
         if (resp.status === 401) {
           this.props.updateError('Invalid Credentials, try again.')
-          return;
+          return resp.status;
         }
         if (resp.status === 200) {
           return resp.json();
@@ -42,7 +42,14 @@ export class SignInComponent extends React.Component<any, any> {
       })
       .then(data => {
         console.log(data);
-        this.props.history.push('/home');
+        if (data === 401) {
+          return;
+        } else {
+          this.props.updateSignedIn(true);
+          this.props.updateUsername('');
+          this.props.updatePassword('');
+          this.props.history.push('/home');
+        }
       })
       .catch(err => {
         this.props.updateError('Unable to log in at this time, please try again later');
@@ -69,7 +76,7 @@ export class SignInComponent extends React.Component<any, any> {
           className="form-control"
           placeholder="Password"
           required />
-        { this.props.errorMessage !== '' &&
+        {this.props.errorMessage !== '' &&
           <div id="error-message">
             {this.props.errorMessage}
           </div>

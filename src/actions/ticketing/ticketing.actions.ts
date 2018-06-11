@@ -12,6 +12,15 @@ export const addItem = (amount: number, date: string, description: string, title
   }
 }
 
+export const clearItems = () => {
+  return {
+    payload: {
+      items: [],
+    },
+    type: ticketingTypes.CLEAR_ITEMS
+  }
+}
+
 export const updateAmount = (amount: number) => {
   return {
     payload: {

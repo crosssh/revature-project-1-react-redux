@@ -1,20 +1,24 @@
 import * as React from 'react';
-import { ITicketing } from '../../reducers';
+// import { ITicketing } from '../../reducers';
 
-interface IProps extends ITicketing {
-  addItem: (amount: number, date: string, description: string, title: string) => void
-  submit: (items: any[]) => void
-  updateAmount: (amount: number) => void
-  updateDate: (date: string) => void
-  updateDescription: (description: string) => void
-  updateTitle: (title: string) => void
-}
+// interface IProps extends ITicketing {
+//   addItem: (amount: number, date: string, description: string, title: string) => void
+//   submit: (items: any[]) => void
+//   updateAmount: (amount: number) => void
+//   updateDate: (date: string) => void
+//   updateDescription: (description: string) => void
+//   updateTitle: (title: string) => void
+// }
 
-export class TicketingComponent extends React.Component<IProps, any> {
+export class TicketingComponent extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props);
     console.log(props);
+  }
+
+  public componentWillUnmount() {
+    this.props.clearItems();
   }
 
   public add = (e: any) => {
@@ -43,13 +47,7 @@ export class TicketingComponent extends React.Component<IProps, any> {
     method: 'POST'
   })
     .then(resp => {
-      if (resp.status === 401) {
-        console.log('Invalid Credentials');
-        return;
-        // throw 'Invalid Credentials';
-      }
       if (resp.status === 200) {
-        console.log('in resp === 200')
         return resp.status;
       }
       console.log('Unable to submit the ticket');
@@ -57,7 +55,7 @@ export class TicketingComponent extends React.Component<IProps, any> {
       return;
     })
     .then(data => {
-      this.context.history.push('/home');
+      this.props.history.push('/home');
     })
     .catch(err => {
       console.log(err);
@@ -124,17 +122,10 @@ export class TicketingComponent extends React.Component<IProps, any> {
         <div className="row">
           <div className="col">
             <table className="table table-bordered table-dark" id="items-table">
-              <thead>
-                <tr>
-                  <th scope="col">Title</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
               <tbody>
                 {this.props.items.map((item: any) =>
                   <tr key={item.title}>
+                  {console.log(this.props.items)}
                     <td>{item.title}</td>
                     <td>{item.amount}</td>
                     <td>{item.timeStamp}</td>

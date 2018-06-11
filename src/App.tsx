@@ -10,6 +10,8 @@ import { SignInContainer } from './components/sign-in/sign-in.container';
 import { HomeContainer } from './components/home/home.container';
 import { TicketingContainer } from './components/ticketing/ticketing.container';
 import { TicketManagerContainer } from './components/ticket-manager/ticket-manager.container';
+import { ApprovedContainer } from './components/approved/approved.container';
+import { DeniedContainer } from './components/denied/denied.container';
 
 class App extends React.Component<any, any> {
 
@@ -24,6 +26,8 @@ class App extends React.Component<any, any> {
               <Route path="/home" component={HomeContainer} />
               <Route path="/ticketing" component={TicketingContainer} />
               <Route path="/pending" component={TicketManagerContainer} />
+              <Route path="/approved" component={ApprovedContainer} />
+              <Route path="/denied" component={DeniedContainer} />
             </Switch>
           </div>
         </HashRouter>

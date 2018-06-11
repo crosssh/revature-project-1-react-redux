@@ -16,14 +16,22 @@ export const ticketingReducer = (state = initialState, action: any) => {
       return {
         ...state,
         amount: 0,
-        date: 'Time of Expense',
+        date: '',
         description: '',
-        items: [...state.items, {
-          amount: action.payload.amount, description: action.payload.description,
-          timeStamp: action.payload.date, title: action.payload.title
-        }],
-        title: 'Title',
+        items: [
+          ...state.items,
+          {
+            amount: action.payload.amount, description: action.payload.description,
+            timeStamp: action.payload.date, title: action.payload.title
+          }
+        ],
+        title: '',
 
+      };
+    case ticketingTypes.CLEAR_ITEMS:
+      return {
+        ...state,
+        items: action.payload.items,
       };
     case ticketingTypes.UPDATE_AMOUNT:
       return {

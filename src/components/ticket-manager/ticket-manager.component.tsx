@@ -19,10 +19,38 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
   }
 
   public approved = (username: any, date: any, status: any) => (e: any) => {
-    e.preventDefault();
-    console.log(username);
-    console.log(date);
-    console.log(status)
+
+    const update = {
+      status,
+      timeSubmitted: date,
+      username,
+
+    };
+
+    fetch('http://localhost:3001/reimbursements/update-status', {
+      body: JSON.stringify(update),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST'
+    })
+      .then(resp => {
+        if (resp.status === 200) {
+          return resp.status;
+        }
+        throw 'Unable to update status';
+      })
+      .then(data => {
+        console.log(data);
+        return;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+      this.props.getPendingTickets();
+      this.forceUpdate()
   }
 
 
@@ -31,7 +59,8 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
       <div className="container">
         <div className="row">
           <div className="col">
-            {
+            
+              {console.log('this is being printed: '+this.props.tickets)}{
               this.props.tickets !== null &&
               this.props.tickets.map((ticket: any) =>
                 <div className="card" key={ticket.timeSubmitted}>
@@ -41,8 +70,28 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
                   <div className="card-body">
                     <div className="row">
                       <div className="col-4">Date Submitted: {ticket.timeSubmitted}</div>
-                      <div className="col-4">Status: {ticket.status}</div>
+                      <div className="col-4">Status: {ticket.status}</div>{console.log('ticket: ', ticket)}
                     </div>
+                    <table>
+                      <tbody>
+                        {
+                          ticket.items !== null &&
+                          ticket.items.map((item: any) =>
+                            <div className="container-75 border" key={item.title}>
+                              <div className="row">
+                                <div className="col-4">Title: {item.title}</div>
+                                <div className="col-4">Date: {item.timeStamp}</div>
+                                <div className="col-4">Amount: {item.amount}</div>
+                              </div>
+                              <div className="row">
+                                <div>Description</div>
+                                <div>{item.description}</div>
+                              </div>
+                            </div>
+                          )
+                        }
+                      </tbody>
+                    </table>
                     <button type="button" className="btn btn-primary" onClick={this.approved(ticket.username, ticket.timeSubmitted, "approved")}>Approved</button>
                     <button type="button" className="btn btn-primary" onClick={this.approved(ticket.username, ticket.timeSubmitted, "denied")}>Denied</button>
                   </div>
@@ -50,6 +99,9 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
               )
             }
           </div>
+        </div>
+        <div className="row">
+            <h3>{this.props.ticketingErrorMessage}</h3>
         </div>
       </div>
     );

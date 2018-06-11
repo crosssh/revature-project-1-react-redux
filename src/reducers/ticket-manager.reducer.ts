@@ -5,6 +5,7 @@ import { ticketManagerTypes } from "../actions/ticket-manager/ticket-manager.typ
 
 const initialState: ITicketManager = {
   ticket: null,
+  ticketingErrorMessage: '',
   tickets: null,
 }
 
@@ -19,6 +20,11 @@ export const ticketManagerReducer = (state = initialState, action: any) => {
       return {
         ...state,
         ticket: action.payload.ticket,
+      }
+      case ticketManagerTypes.UPDATE_TICKETING_ERROR:
+      return {
+        ...state,
+        ticketingErrorMessage: action.payload.ticketingErrorMessage,
       }
   }
 

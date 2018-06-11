@@ -4,6 +4,7 @@ import { signInTypes } from '../actions/sign-in/sign-in.types';
 const initialState: ISignIn = {
   errorMessage: '',
   password: '',
+  signedIn: false,
   username: '',
 }
 
@@ -25,6 +26,11 @@ export const signInReducer = (state = initialState, action: any) => {
       return {
         ...state,
         username: action.payload.username
+      }
+    case signInTypes.UPDATE_SIGNED_IN:
+      return {
+        ...state,
+        signedIn: action.payload.signedIn,
       }
   }
 

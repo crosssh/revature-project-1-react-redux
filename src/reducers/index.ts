@@ -3,11 +3,24 @@ import { signInReducer } from "./sign-in.reducer";
 import { homeReducer } from "./home.reducer";
 import { ticketingReducer } from "./ticketing.reducer";
 import { ticketManagerReducer } from "./ticket-manager.reducer";
+import { approvedReducer } from "./approved.reducer";
+import { deniedReducer } from "./denied.reducer";
+
+export interface IApproved {
+  approvedTickets: any,
+  approvedErrorMessage: string,
+}
+
+export interface IDenied {
+  deniedTickets: any,
+  deniedErrorMessage: string,
+}
 
 export interface ISignIn {
-  username: string,
+  errorMessage: string,
   password: string,
-  errorMessage: string
+  signedIn: boolean,
+  username: string,
 }
 
 export interface IHome {
@@ -23,11 +36,14 @@ export interface ITicketing {
 }
 
 export interface ITicketManager {
+  ticketingErrorMessage: string,
   tickets: any;
   ticket: any;
 }
 
 export interface IState {
+  approved: IApproved,
+  denied: IDenied,
   home: IHome,
   signIn: ISignIn,
   ticketing: ITicketing,
@@ -35,6 +51,8 @@ export interface IState {
 };
 
 export const state = combineReducers<IState>({
+  approved: approvedReducer,
+  denied: deniedReducer,
   home: homeReducer,
   signIn: signInReducer,
   ticketManager: ticketManagerReducer,

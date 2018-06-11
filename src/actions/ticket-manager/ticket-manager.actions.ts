@@ -4,8 +4,14 @@ export const getPendingTickets = () => (dispatch: any) => {
   fetch('http://localhost:3001/reimbursements/status/pending', { credentials: 'include' })
   .then(resp => {
       console.log(resp.status)
-      if (resp.status === 401 || resp.status === 403) {
-          return;
+      if (resp.status === 403) {
+        dispatch({
+          payload: {
+            ticketingErrorMessage: 'You do not have access to these tickets.',
+          },
+          type: ticketManagerTypes.UPDATE_TICKETING_ERROR
+        })
+          return null;
       }
       return resp.json();
   })
@@ -28,5 +34,14 @@ export const setCurrentTicket = (ticket: any) => {
       ticket
     },
     type: ticketManagerTypes.SET_CURRENT_TICKET
+  }
+}
+
+export const updateTicketingError = (ticketingErrorMessage: any) => {
+  return {
+    payload: {
+      ticketingErrorMessage
+    },
+    type: ticketManagerTypes.UPDATE_TICKETING_ERROR
   }
 }
