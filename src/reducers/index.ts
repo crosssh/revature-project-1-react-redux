@@ -24,7 +24,8 @@ export interface ISignIn {
 }
 
 export interface IHome {
-  reimbursements: any[],
+  reimbursements: any[]
+  username: string
 }
 
 export interface ITicketing {
@@ -36,18 +37,18 @@ export interface ITicketing {
 }
 
 export interface ITicketManager {
-  ticketingErrorMessage: string,
-  tickets: any;
-  ticket: any;
+  ticketingErrorMessage: string
+  tickets: any
+  ticket: any
 }
 
 export interface IState {
-  approved: IApproved,
-  denied: IDenied,
-  home: IHome,
-  signIn: ISignIn,
-  ticketing: ITicketing,
-  ticketManager: ITicketManager,
+  approved: IApproved
+  denied: IDenied
+  home: IHome
+  signIn: ISignIn
+  ticketing: ITicketing
+  ticketManager: ITicketManager
 };
 
 export const state = combineReducers<IState>({

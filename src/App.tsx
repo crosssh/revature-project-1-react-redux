@@ -12,6 +12,7 @@ import { TicketingContainer } from './components/ticketing/ticketing.container';
 import { TicketManagerContainer } from './components/ticket-manager/ticket-manager.container';
 import { ApprovedContainer } from './components/approved/approved.container';
 import { DeniedContainer } from './components/denied/denied.container';
+import { SignOutComponent } from './components/sign-out/sign-out.component';
 
 class App extends React.Component<any, any> {
 
@@ -22,12 +23,13 @@ class App extends React.Component<any, any> {
           <div>
             <NavComponent />
             <Switch>
-              <Route path="/sign-in" component={SignInContainer} />
               <Route path="/home" component={HomeContainer} />
               <Route path="/ticketing" component={TicketingContainer} />
               <Route path="/pending" component={TicketManagerContainer} />
               <Route path="/approved" component={ApprovedContainer} />
               <Route path="/denied" component={DeniedContainer} />
+              <Route path="/sign-out" component={SignOutComponent} />
+              <Route path="/" component={SignInContainer} />
             </Switch>
           </div>
         </HashRouter>

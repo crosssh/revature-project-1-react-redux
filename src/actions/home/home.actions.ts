@@ -23,3 +23,12 @@ export const updateReimbursement = () => (dispatch: any) => {
       console.log(err);
     })
 }
+
+export const updateUsername = (username: string) => {
+  return {
+    payload: {
+      username
+    },
+    type: homeTypes.UPDATE_USERNAME
+  }
+}

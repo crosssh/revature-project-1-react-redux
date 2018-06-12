@@ -27,7 +27,7 @@ export class ApprovedComponent extends React.Component<IProps, any> {
       <div className="container">
         <div className="row">
           <div className="col">
-          {
+            {
               this.props.approvedTickets !== null &&
               this.props.approvedTickets.map((ticket: any) =>
                 <div className="card" key={ticket.timeSubmitted}>

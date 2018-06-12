@@ -39,27 +39,27 @@ export class TicketingComponent extends React.Component<any, any> {
 
     e.preventDefault();
     fetch('http://localhost:3001/reimbursements/add-reimbursement', {
-    body: JSON.stringify(ticket),
-    credentials: 'include',
-    headers: {
-      'content-type': 'application/json'
-    },
-    method: 'POST'
-  })
-    .then(resp => {
-      if (resp.status === 200) {
-        return resp.status;
-      }
-      console.log('Unable to submit the ticket');
-      // throw 'Unable to submit the ticket';
-      return;
+      body: JSON.stringify(ticket),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST'
     })
-    .then(data => {
-      this.props.history.push('/home');
-    })
-    .catch(err => {
-      console.log(err);
-    })
+      .then(resp => {
+        if (resp.status === 200) {
+          return resp.status;
+        }
+        console.log('Unable to submit the ticket');
+        // throw 'Unable to submit the ticket';
+        return;
+      })
+      .then(data => {
+        this.props.history.push('/home');
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   public render() {
@@ -68,54 +68,56 @@ export class TicketingComponent extends React.Component<any, any> {
         <div className="card w-100">
           <div className="card-body">
             <h5 className="card-title">Add item to the ticket</h5>
-            <div className="container">
-              <div className="row">
-                <div className="col-md-4 mb-3">
-                  <input
-                    value={this.props.title}
-                    onChange={(e: any) => this.props.updateTitle(e.target.value)}
-                    type="text"
-                    id="title-input"
-                    className="form-control"
-                    placeholder="Title"
-                    required />
+            <form>
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-4 mb-3">
+                    <input
+                      value={this.props.title}
+                      onChange={(e: any) => this.props.updateTitle(e.target.value)}
+                      type="text"
+                      id="title-input"
+                      className="form-control"
+                      placeholder="Title"
+                      required />
+                  </div>
+                  <div className="col-md-4">
+                    <input
+                      value={this.props.amount}
+                      onChange={(e: any) => this.props.updateAmount(e.target.value)}
+                      type="number"
+                      id="amount-input"
+                      className="form-control"
+                      placeholder="Amount"
+                      required />
+                  </div>
                 </div>
-                <div className="col-md-4">
-                  <input
-                    value={this.props.amount}
-                    onChange={(e: any) => this.props.updateAmount(e.target.value)}
-                    type="number"
-                    id="amount-input"
-                    className="form-control"
-                    placeholder="Amount"
-                    required />
+                <div className="row">
+                  <div className="col-md-4 mb-3">
+                    <input
+                      value={this.props.date}
+                      onChange={(e: any) => this.props.updateDate(e.target.value)}
+                      type="text"
+                      id="time-input"
+                      className="form-control"
+                      placeholder="Time of expense"
+                      required />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="description-input">Description</label>
+                    <textarea
+                      value={this.props.description}
+                      onChange={(e: any) => this.props.updateDescription(e.target.value)}
+                      className="form-control"
+                      id="description-input"></textarea>
+                  </div>
                 </div>
               </div>
-              <div className="row">
-                <div className="col-md-4 mb-3">
-                  <input
-                    value={this.props.date}
-                    onChange={(e: any) => this.props.updateDate(e.target.value)}
-                    type="text"
-                    id="time-input"
-                    className="form-control"
-                    placeholder="Time of expense"
-                    required />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-6 mb-3">
-                  <label htmlFor="description-input">Description</label>
-                  <textarea
-                    value={this.props.description}
-                    onChange={(e: any) => this.props.updateDescription(e.target.value)}
-                    className="form-control"
-                    id="description-input"></textarea>
-                </div>
-              </div>
-            </div>
-            <button className="btn btn-primary" onClick={this.add}>Add</button>
-            <button className="btn btn-primary" onClick={this.submit}>Submit Ticket</button>
+              <button type="submit" className="btn btn-primary sign-in-button" onClick={this.add}>Add</button>
+              <button type="submit" className="btn btn-primary sign-in-button" onClick={this.submit}>Submit Ticket</button>
+            </form>
           </div>
         </div>
 
@@ -125,7 +127,7 @@ export class TicketingComponent extends React.Component<any, any> {
               <tbody>
                 {this.props.items.map((item: any) =>
                   <tr key={item.title}>
-                  {console.log(this.props.items)}
+                    {console.log(this.props.items)}
                     <td>{item.title}</td>
                     <td>{item.amount}</td>
                     <td>{item.timeStamp}</td>

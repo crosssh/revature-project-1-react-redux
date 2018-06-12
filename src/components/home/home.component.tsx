@@ -14,6 +14,7 @@ export class HomeComponent extends React.Component<IProps, any> {
 
   public componentDidMount() {
     this.props.updateReimbursement();
+    console.log(this.props.reimbursements)
   }
 
   public formatTime = (time: any) => {
@@ -24,19 +25,19 @@ export class HomeComponent extends React.Component<IProps, any> {
   public render() {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col">
-          {
-              this.props.reimbursements !== null &&
-              this.props.reimbursements.map((ticket: any) =>
-                <div className="card" key={ticket.timeSubmitted}>
-                  <div className="card-header">
-                    <h5 className="card-title">Reimbursement for {ticket.username}</h5>
-                  </div>
-                  <div className="card-body">
+            <div className="card" >
+              <div className="card-header">
+                { this.props.reimbursements && this.props.reimbursements[0] &&
+                  <h5 className="card-title">Reimbursement for {this.props.reimbursements[0].username}</h5>
+                }
+              </div>
+              {
+                this.props.reimbursements !== null &&
+                this.props.reimbursements.map((ticket: any) =>
+                  <div className="card-body" key={ticket.timeSubmitted}>
                     <div className="row">
-                      <div className="col-4">Date Submitted: {this.formatTime(ticket.timeSubmitted)}</div>
-                      <div className="col-4">Status: {ticket.status}</div>
+                      <div className="col-10">Date Submitted: {this.formatTime(ticket.timeSubmitted)}</div>
+                      <div className="col-2">Status: {ticket.status}</div>
                     </div>
                     {
                       ticket.items !== null &&
@@ -57,12 +58,10 @@ export class HomeComponent extends React.Component<IProps, any> {
                       )
                     }
                   </div>
-                </div>
-              )
-            }
+                )
+              }
+            </div>
           </div>
-        </div>
-      </div>
     );
   }
 }

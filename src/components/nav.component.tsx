@@ -8,9 +8,9 @@ export const NavComponent: React.StatelessComponent<{}> = () => {
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <div className="collapse navbar-collapse" id="navbarsExample04">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
+            {/* <li className="nav-item active">
               <Link to="/sign-in" className="unset-anchor nav-link">Sign In</Link>
-            </li>
+            </li> */}
             <li className="nav-item active">
               <Link to="/home" className="unset-anchor nav-link">Home</Link>
             </li>
@@ -24,6 +24,9 @@ export const NavComponent: React.StatelessComponent<{}> = () => {
                 <div className="dropdown-item"><Link to="/denied" className="unset-anchor nav-link active">Denied</Link></div>
                 <div className="dropdown-item"><Link to="/pending" className="unset-anchor nav-link active">Pending</Link></div>
               </div>
+            </li>
+            <li className="nav-item active">
+              <Link to="/sign-out" className="unset-anchor nav-link shift-right">Sign Out</Link>
             </li>
           </ul>
         </div>
