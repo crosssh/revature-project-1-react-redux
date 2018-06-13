@@ -1,7 +1,8 @@
 import { deniedTypes } from "./denied.types";
+import { environment } from "../../environment";
 
 export const getDeniedTickets = () => (dispatch: any) => {
-  fetch('http://localhost:3001/reimbursements/status/denied', { credentials: 'include' })
+  fetch(environment.context+'reimbursements/status/denied', { credentials: 'include' })
   .then(resp => {
       console.log(resp.status)
       if (resp.status === 403) {

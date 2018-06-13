@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ITicketManager } from '../../reducers';
+import { environment } from '../../environment';
 
 interface IProps extends ITicketManager {
   getPendingTickets: () => void
@@ -33,7 +34,7 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
 
     };
 
-    fetch('http://localhost:3001/reimbursements/update-status', {
+    fetch(environment.context+'reimbursements/update-status', {
       body: JSON.stringify(update),
       credentials: 'include',
       headers: {

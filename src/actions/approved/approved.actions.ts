@@ -1,7 +1,8 @@
 import { approvedTypes } from "./approved.types";
+import { environment } from "../../environment";
 
 export const getApprovedTickets = () => (dispatch: any) => {
-  fetch('http://localhost:3001/reimbursements/status/approved', { credentials: 'include' })
+  fetch(environment.context+'reimbursements/status/approved', { credentials: 'include' })
   .then(resp => {
       console.log(resp.status)
       if (resp.status === 403) {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { environment } from '../../environment';
 
 export class SignOutComponent extends React.Component<any, any> {
 
@@ -8,7 +9,7 @@ export class SignOutComponent extends React.Component<any, any> {
   }
 
   public signOut = () => {
-    fetch('http://localhost:3001/users/sign-out', { credentials: 'include' })
+    fetch(environment.context+'users/sign-out', { credentials: 'include' })
       .then(resp => {
         console.log(resp.status)
         return resp.json();

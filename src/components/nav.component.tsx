@@ -8,9 +8,6 @@ export const NavComponent: React.StatelessComponent<{}> = () => {
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <div className="collapse navbar-collapse" id="navbarsExample04">
           <ul className="navbar-nav mr-auto">
-            {/* <li className="nav-item active">
-              <Link to="/sign-in" className="unset-anchor nav-link">Sign In</Link>
-            </li> */}
             <li className="nav-item active">
               <Link to="/home" className="unset-anchor nav-link">Home</Link>
             </li>

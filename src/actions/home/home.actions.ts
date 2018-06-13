@@ -1,8 +1,9 @@
 import { homeTypes } from "./home.types";
+import { environment } from "../../environment";
 
 
 export const updateReimbursement = () => (dispatch: any) => {
-  fetch('http://localhost:3001/reimbursements/username', { credentials: 'include' })
+  fetch(environment.context+'reimbursements/username', { credentials: 'include' })
     .then(resp => {
       console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {

@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import { environment } from '../../environment';
 
 export class SignInComponent extends React.Component<any, any> {
 
@@ -21,7 +22,7 @@ export class SignInComponent extends React.Component<any, any> {
   public submit = (e: any) => {
     e.preventDefault();
     const { username, password } = this.props; // destructuring
-    fetch('http://localhost:3001/users/login', {
+    fetch(environment.context+'users/login', {
       body: JSON.stringify({ username, password }),
       credentials: 'include',
       headers: {

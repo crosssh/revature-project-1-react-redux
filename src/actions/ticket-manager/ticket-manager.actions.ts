@@ -1,7 +1,8 @@
 import { ticketManagerTypes } from "./ticket-manager.types";
+import { environment } from "../../environment";
 
 export const getPendingTickets = () => (dispatch: any) => {
-  fetch('http://localhost:3001/reimbursements/status/pending', { credentials: 'include' })
+  fetch(environment.context+'reimbursements/status/pending', { credentials: 'include' })
   .then(resp => {
       console.log(resp.status)
       if (resp.status === 403) {
