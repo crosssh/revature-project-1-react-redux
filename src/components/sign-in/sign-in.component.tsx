@@ -46,8 +46,7 @@ export class SignInComponent extends React.Component<any, any> {
           return;
         } else {
           this.props.updateSignedIn(true);
-          this.props.updateUsername('');
-          this.props.updatePassword('');
+          this.props.updateError('')
           this.props.history.push('/home');
         }
       })

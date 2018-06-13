@@ -24,8 +24,8 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
   }
 
   public statusUpdate = (username: any, date: any, status: any) => (e: any) => {
-
     e.preventDefault();
+
     const update = {
       status,
       timeSubmitted: date,
@@ -49,6 +49,7 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
       })
       .then(data => {
         console.log(data);
+        this.props.getPendingTickets();
         return;
       })
       .catch(err => {
@@ -64,7 +65,7 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
       <div className="container">
         <div className="row">
           <div className="col">
-          {
+            {
               this.props.tickets !== null &&
               this.props.tickets.map((ticket: any) =>
                 <div className="card" key={ticket.timeSubmitted}>
@@ -96,8 +97,8 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
                     }
                   </div>
                   <div className="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" className="btn btn-primary" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "approved")}>Approved</button>
-                    <button type="button" className="btn btn-primary" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "denied")}>Denied</button>
+                    <button type="button" className="btn btn-primary sign-in-button" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "approved")}>Approved</button>
+                    <button type="button" className="btn btn-primary sign-in-button" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "denied")}>Denied</button>
                   </div>
                 </div>
               )

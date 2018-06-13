@@ -196,3 +196,11 @@ nav {
   border-color: #131f2c !important;
   background-color: #131f2c !important;
 }
+
+.form-signin{
+  margin-top: 8em;
+}
+
+body {
+  background-color: rgb(211, 203, 203);
+}
