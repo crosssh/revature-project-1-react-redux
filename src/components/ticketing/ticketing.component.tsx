@@ -68,8 +68,8 @@ export class TicketingComponent extends React.Component<any, any> {
   public render() {
     return (
       <div className="container">
-        <div className="card w-100">
-          <div className="card-body">
+        <div className="card w-100 ticket-card">
+          <div className="card-body ticket-card-body">
             <h5 className="card-title">Add item to the ticket</h5>
             <form>
               <div className="container">

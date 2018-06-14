@@ -33,7 +33,7 @@ export class HomeComponent extends React.Component<IProps, any> {
       {
         this.props.reimbursements.length > 0 &&
         <div className="card" >
-          <div className="card-header">
+          <div className="card-header"> 
             {this.props.reimbursements && this.props.reimbursements[0] &&
               <h5 className="card-title">Reimbursement for {this.props.reimbursements[0].username}</h5>
             }
@@ -41,7 +41,7 @@ export class HomeComponent extends React.Component<IProps, any> {
           {
             this.props.reimbursements !== null &&
             this.props.reimbursements.map((ticket: any) =>
-              <div className="card-body" key={ticket.timeSubmitted}>
+              <div className="card-body home-card" key={ticket.timeSubmitted}>
                 <div className="row">
                   <div className="col-10">Date Submitted: {this.formatTime(ticket.timeSubmitted)}</div>
                   <div className="col-2">Status: {ticket.status}</div>

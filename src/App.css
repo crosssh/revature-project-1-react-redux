@@ -86,22 +86,6 @@ nav {
   box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);
 }
 
-
-/*****************************
-  TIC TAC TOE
-*****************************/
-.tic-tac-col {
-  border: 1px solid black;
-  font-size: 4em;
-  text-align: center;
-  min-height: 1em ;
-}
-#tic-tac-board {
-  width: 75%;
-}
-
-
-
 /*****************************
   SIGN IN
 *****************************/
@@ -153,7 +137,8 @@ nav {
 }
 
 .item {
-  margin-bottom: 0.5em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
   border: solid;
   border-color: #343a40;
   border-radius: 15px;
@@ -173,7 +158,7 @@ nav {
   font-weight: bold;
 }
 
-.card-body {
+.home-card {
   border: solid;
   border-width: thin;
   border-radius: 15px;
@@ -181,14 +166,28 @@ nav {
 }
 
 .card {
+  background-color: rgb(221, 221, 221);
   border: none;
   margin-bottom: 5px;
 }
+
+.ticket-card {
+  border: solid;
+  border-color: #343a40;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.ticket-card-body {
+  margin-top: none;
+}
+
 
 .sign-in-button{
   background-color: #343a40;
   border-color: #343a40;
   color: #ed8200;
+  margin-right: .15em;
 }
 
 .sign-in-button:hover{
@@ -201,6 +200,18 @@ nav {
   margin-top: 8em;
 }
 
+.modal-header {
+  padding: .25em;
+}
+
+.modal-footer {
+  padding: .25em;
+} 
+
 body {
-  background-color: rgb(211, 203, 203);
+  background-color: rgb(221, 221, 221);
+}
+
+.modal-content {
+  padding: .25em;
 }
