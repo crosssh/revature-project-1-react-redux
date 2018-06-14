@@ -148,9 +148,3 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
     );
   }
 }
-
-
-{/* <div className="btn-group" role="group" aria-label="Basic example">
-  <button type="button" className="btn btn-primary sign-in-button" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "approved")}>Approved</button>
-  <button type="button" className="btn btn-primary sign-in-button" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "denied")}>Denied</button>
-</div> */}

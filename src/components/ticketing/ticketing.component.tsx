@@ -20,6 +20,10 @@ export class TicketingComponent extends React.Component<any, any> {
 
   public componentWillUnmount() {
     this.props.clearItems();
+    this.props.updateAmount(0);
+    this.props.updateDescription('');
+    this.props.updateDate('');
+    this.props.updateTitle('');
   }
 
   public add = (e: any) => {
@@ -98,7 +102,7 @@ export class TicketingComponent extends React.Component<any, any> {
                     <input
                       value={this.props.date}
                       onChange={(e: any) => this.props.updateDate(e.target.value)}
-                      type="text"
+                      type="date"
                       id="time-input"
                       className="form-control"
                       placeholder="Time of expense" />

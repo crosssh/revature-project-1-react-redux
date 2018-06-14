@@ -159,6 +159,7 @@ nav {
 }
 
 .home-card {
+  background-color: white;
   border: solid;
   border-width: thin;
   border-radius: 15px;
