@@ -1,6 +1,16 @@
 import { deniedTypes } from "./denied.types";
 import { environment } from "../../environment";
 
+export const clearDenied = () => {
+  return {
+    payload: {
+      deniedErrorMessage: '',
+      deniedTickets: null,
+    },
+    type: deniedTypes.CLEAR_DENIED
+  }
+}
+
 export const getDeniedTickets = () => (dispatch: any) => {
   fetch(environment.context+'reimbursements/status/denied', { credentials: 'include' })
   .then(resp => {

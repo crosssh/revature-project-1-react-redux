@@ -3,6 +3,7 @@ import { ITicketManager } from '../../reducers';
 import { environment } from '../../environment';
 
 interface IProps extends ITicketManager {
+  clearTickets: () => void
   getPendingTickets: () => void
   updateTicketingError: (str: string) => void
   getItems: (items: any, timeSubmitted: number, username: string) => void
@@ -20,6 +21,7 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
   }
 
   public componentWillUnmount() {
+    this.props.clearTickets();
     this.props.updateTicketingError('');
   }
 

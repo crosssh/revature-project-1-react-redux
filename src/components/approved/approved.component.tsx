@@ -2,6 +2,7 @@ import * as React from 'react';
 import { IApproved } from '../../reducers'
 
 interface IProps extends IApproved {
+  clearApproved: () => void
   getApprovedTickets: () => void
   getItems: (items: any) => void
   updateApprovedError: (str: string) => void
@@ -20,6 +21,7 @@ export class ApprovedComponent extends React.Component<IProps, any> {
   }
 
   public componentWillUnmount() {
+    this.props.clearApproved();
     this.props.updateApprovedError('');
   }
 

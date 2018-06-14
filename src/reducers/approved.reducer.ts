@@ -12,6 +12,12 @@ const initialState: IApproved = {
 
 export const approvedReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case approvedTypes.CLEAR_APPROVED:
+    return {
+      ...state,
+      approvedErrorMessage: action.payload.approvedErrorMessage,
+      approvedTickets: action.payload.approvedTickets,
+    }
     case approvedTypes.GET_APPROVED_TICKETS:
       return {
         ...state,

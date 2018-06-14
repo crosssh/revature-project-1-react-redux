@@ -1,9 +1,19 @@
 import { approvedTypes } from "./approved.types";
 import { environment } from "../../environment";
 
+export const clearApproved = () => {
+  return {
+    payload: {
+      approvedErrorMessage: '',
+      approvedTickets: null,
+    },
+    type: approvedTypes.CLEAR_APPROVED
+  }
+}
+
 export const getApprovedTickets = () => (dispatch: any) => {
-  fetch(environment.context+'reimbursements/status/approved', { credentials: 'include' })
-  .then(resp => {
+  fetch(environment.context + 'reimbursements/status/approved', { credentials: 'include' })
+    .then(resp => {
       console.log(resp.status)
       if (resp.status === 403) {
         dispatch({
@@ -12,22 +22,22 @@ export const getApprovedTickets = () => (dispatch: any) => {
           },
           type: approvedTypes.UPDATE_APPROVED_ERROR
         })
-          return null;
+        return null;
       }
       return resp.json();
-  })
-  .then((approvedTickets) => {
-    console.log('here ' + approvedTickets)
-    dispatch({
-      payload: {
-        approvedTickets
-      },
-      type: approvedTypes.GET_APPROVED_TICKETS
     })
-  })
-  .catch(err => {
+    .then((approvedTickets) => {
+      console.log('here ' + approvedTickets)
+      dispatch({
+        payload: {
+          approvedTickets
+        },
+        type: approvedTypes.GET_APPROVED_TICKETS
+      })
+    })
+    .catch(err => {
       console.log(err);
-  })
+    })
 }
 
 export const getItems = (items: any) => {

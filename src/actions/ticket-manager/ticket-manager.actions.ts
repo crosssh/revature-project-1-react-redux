@@ -1,6 +1,16 @@
 import { ticketManagerTypes } from "./ticket-manager.types";
 import { environment } from "../../environment";
 
+export const clearTickets = () => {
+  return {
+    payload: {
+      ticketingErrorMessage: '',
+      tickets: null,
+    },
+    type: ticketManagerTypes.CLEAR_TICKETS
+  }
+}
+
 export const getPendingTickets = () => (dispatch: any) => {
   fetch(environment.context+'reimbursements/status/pending', { credentials: 'include' })
   .then(resp => {

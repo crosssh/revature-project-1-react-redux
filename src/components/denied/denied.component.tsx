@@ -2,6 +2,7 @@ import * as React from 'react';
 import { IDenied } from '../../reducers';
 
 interface IProps extends IDenied {
+  clearDenied: () => void
   formatTime: (time: any) => any
   getDeniedTickets: () => void
   getItems: (items: any) => void
@@ -20,6 +21,7 @@ export class DeniedComponent extends React.Component<IProps, any> {
   }
 
   public componentWillUnmount() {
+    this.props.clearDenied();
     this.props.updateDeniedError('');
   }
 

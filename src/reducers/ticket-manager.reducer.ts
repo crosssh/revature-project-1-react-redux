@@ -14,6 +14,12 @@ const initialState: ITicketManager = {
 
 export const ticketManagerReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case ticketManagerTypes.CLEAR_TICKETS:
+    return {
+      ...state,
+      ticketingErrorMessage: action.payload.ticketingErrorMessage,
+      tickets: action.payload.tickets,
+    }
     case ticketManagerTypes.GET_ITEMS:
     return {
       ...state,
