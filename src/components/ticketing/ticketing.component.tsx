@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { environment } from '../../environment';
 // import { ITicketing } from '../../reducers';
 
 // interface IProps extends ITicketing {
@@ -40,7 +41,7 @@ export class TicketingComponent extends React.Component<any, any> {
     }
 
     e.preventDefault();
-    fetch('http://localhost:3001/reimbursements/add-reimbursement', {
+    fetch(environment.context+'reimbursements/add-reimbursement', {
       body: JSON.stringify(ticket),
       credentials: 'include',
       headers: {
