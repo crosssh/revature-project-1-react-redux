@@ -33,3 +33,13 @@ export const updateUsername = (username: string) => {
     type: homeTypes.UPDATE_USERNAME
   }
 }
+
+export const clearHome = () => {
+  return {
+    payload: {
+      reimbursements: [],
+      username: '',
+    },
+    type: homeTypes.CLEAR_HOME
+  }
+}

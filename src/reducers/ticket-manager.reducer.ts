@@ -4,13 +4,23 @@ import { ticketManagerTypes } from "../actions/ticket-manager/ticket-manager.typ
 
 
 const initialState: ITicketManager = {
+  items: null,
   ticket: null,
   ticketingErrorMessage: '',
   tickets: null,
+  timeSubmitted: 0,
+  username: '',
 }
 
 export const ticketManagerReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case ticketManagerTypes.GET_ITEMS:
+    return {
+      ...state,
+      items: action.payload.items,
+      timeSubmitted: action.payload.timeSubmitted,
+      username: action.payload.username,
+    }
     case ticketManagerTypes.GET_PENDING_TICKETS:
       return {
         ...state,

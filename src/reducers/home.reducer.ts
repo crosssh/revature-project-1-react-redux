@@ -9,6 +9,12 @@ const initialState: IHome = {
 
 export const homeReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case homeTypes.CLEAR_HOME: 
+      return {
+        ...state,
+        reimbursements: action.payload.reimbursements,
+        username: action.payload.username,
+      }
     case homeTypes.UPDATE_REIMBURSEMNTS:
       return {
         ...state,
@@ -18,7 +24,7 @@ export const homeReducer = (state = initialState, action: any) => {
       return {
         ...state,
         username: action.payload.username
-      }
+      };
   }
 
   return state;

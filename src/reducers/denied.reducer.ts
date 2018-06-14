@@ -5,6 +5,7 @@ import { deniedTypes } from "../actions/denied/denied.types";
 const initialState: IDenied = {
   deniedErrorMessage: '',
   deniedTickets: null,
+  items: null,
 }
 
 export const deniedReducer = (state = initialState, action: any) => {
@@ -14,6 +15,11 @@ export const deniedReducer = (state = initialState, action: any) => {
         ...state,
         deniedTickets: action.payload.deniedTickets,
       };
+      case deniedTypes.GET_ITEMS:
+      return {
+        ...state,
+        items: action.payload.items,
+      }
     case deniedTypes.UPDATE_DENIED_ERROR:
       return {
         ...state,

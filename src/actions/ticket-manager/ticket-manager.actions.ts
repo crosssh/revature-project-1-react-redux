@@ -29,6 +29,19 @@ export const getPendingTickets = () => (dispatch: any) => {
   })
 }
 
+export const getItems = (items: any, timeSubmitted: number, username: string) => {
+  console.log(timeSubmitted)
+  console.log(username);
+  return {
+    payload: {
+      items,
+      timeSubmitted,
+      username
+    },
+    type: ticketManagerTypes.GET_ITEMS
+  }
+}
+
 export const updateTicketingError = (ticketingErrorMessage: any) => {
   return {
     payload: {

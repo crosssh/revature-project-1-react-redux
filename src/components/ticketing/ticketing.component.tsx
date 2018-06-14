@@ -23,7 +23,9 @@ export class TicketingComponent extends React.Component<any, any> {
 
   public add = (e: any) => {
     e.preventDefault();
-    this.props.addItem(this.props.amount, this.props.date, this.props.description, this.props.title);
+    if (this.props.title !== '' && this.props.date !== '' && this.props.description !== '' && this.props.amount !== 0) {
+      this.props.addItem(this.props.amount, this.props.date, this.props.description, this.props.title);
+    }
   }
 
   // Add error messagese that appear if error occurs.
@@ -78,8 +80,7 @@ export class TicketingComponent extends React.Component<any, any> {
                       type="text"
                       id="title-input"
                       className="form-control"
-                      placeholder="Title"
-                      required />
+                      placeholder="Title" />
                   </div>
                   <div className="col-md-4">
                     <input
@@ -88,8 +89,7 @@ export class TicketingComponent extends React.Component<any, any> {
                       type="number"
                       id="amount-input"
                       className="form-control"
-                      placeholder="Amount"
-                      required />
+                      placeholder="Amount" />
                   </div>
                 </div>
                 <div className="row">
@@ -100,8 +100,7 @@ export class TicketingComponent extends React.Component<any, any> {
                       type="text"
                       id="time-input"
                       className="form-control"
-                      placeholder="Time of expense"
-                      required />
+                      placeholder="Time of expense" />
                   </div>
                 </div>
                 <div className="row">
@@ -115,7 +114,7 @@ export class TicketingComponent extends React.Component<any, any> {
                   </div>
                 </div>
               </div>
-              <button type="submit" className="btn btn-primary sign-in-button" onClick={this.add}>Add</button>
+              <button type="button" className="btn btn-primary sign-in-button" onClick={this.add}>Add</button>
               <button type="submit" className="btn btn-primary sign-in-button" onClick={this.submit}>Submit Ticket</button>
             </form>
           </div>

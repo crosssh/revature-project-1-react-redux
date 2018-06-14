@@ -7,6 +7,7 @@ import { approvedTypes } from "../actions/approved/approved.types";
 const initialState: IApproved = {
   approvedErrorMessage: '',
   approvedTickets: null,
+  items: null,
 }
 
 export const approvedReducer = (state = initialState, action: any) => {
@@ -16,6 +17,11 @@ export const approvedReducer = (state = initialState, action: any) => {
         ...state,
         approvedTickets: action.payload.approvedTickets,
       };
+      case approvedTypes.GET_ITEMS:
+      return {
+        ...state,
+        items: action.payload.items,
+      }
     case approvedTypes.UPDATE_APPROVED_ERROR:
       return {
         ...state,

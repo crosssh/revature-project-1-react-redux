@@ -3,6 +3,7 @@ import { IHome } from '../../reducers';
 
 interface IProps extends IHome {
   updateReimbursement: () => void
+  clearHome: () => void
 }
 
 export class HomeComponent extends React.Component<IProps, any> {
@@ -15,6 +16,10 @@ export class HomeComponent extends React.Component<IProps, any> {
   public componentDidMount() {
     this.props.updateReimbursement();
     console.log(this.props.reimbursements)
+  }
+
+  public componentWillUnmount() {
+    this.props.clearHome();
   }
 
   public formatTime = (time: any) => {

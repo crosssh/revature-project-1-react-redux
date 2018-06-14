@@ -29,6 +29,16 @@ export const getDeniedTickets = () => (dispatch: any) => {
   })
 }
 
+export const getItems = (items: any) => {
+  return {
+    payload: {
+      items
+    },
+    type: deniedTypes.GET_ITEMS
+  }
+}
+
+
 export const updateDeniedError = (deniedErrorMessage: string) => {
   return {
     payload: {

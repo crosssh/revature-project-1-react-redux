@@ -9,11 +9,13 @@ import { deniedReducer } from "./denied.reducer";
 export interface IApproved {
   approvedTickets: any,
   approvedErrorMessage: string,
+  items: any,
 }
 
 export interface IDenied {
   deniedTickets: any,
   deniedErrorMessage: string,
+  items: any,
 }
 
 export interface ISignIn {
@@ -37,9 +39,12 @@ export interface ITicketing {
 }
 
 export interface ITicketManager {
+  items: any
   ticketingErrorMessage: string
   tickets: any
   ticket: any
+  timeSubmitted: number
+  username: string
 }
 
 export interface IState {

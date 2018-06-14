@@ -30,10 +30,20 @@ export const getApprovedTickets = () => (dispatch: any) => {
   })
 }
 
+export const getItems = (items: any) => {
+  return {
+    payload: {
+      items
+    },
+    type: approvedTypes.GET_ITEMS
+  }
+}
+
 export const updateApprovedError = (approvedErrorMessage: string) => (dispatch: any) => {
   dispatch({
     payload: {
       approvedErrorMessage
-    }
+    },
+    type: approvedTypes.UPDATE_APPROVED_ERROR
   })
 }

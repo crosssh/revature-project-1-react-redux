@@ -4,6 +4,8 @@ import { environment } from '../../environment';
 
 interface IProps extends ITicketManager {
   getPendingTickets: () => void
+  updateTicketingError: (str: string) => void
+  getItems: (items: any, timeSubmitted: number, username: string) => void
 }
 
 export class TicketManagerComponent extends React.Component<IProps, any> {
@@ -15,8 +17,10 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
 
   public componentDidMount() {
     this.props.getPendingTickets();
+  }
 
-    console.log(this.props.tickets);
+  public componentWillUnmount() {
+    this.props.updateTicketingError('');
   }
 
   public formatTime = (time: any) => {
@@ -24,9 +28,15 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
     return newTime.toDateString();
   }
 
+  public getItems = (items: any, timeSubmitted: number, username: string) => (e: any) => {
+    // console.log(timeSubmitted);
+    // console.log(username);
+    this.props.getItems(items, timeSubmitted, username);
+  }
+
   public statusUpdate = (username: any, date: any, status: any) => (e: any) => {
     e.preventDefault();
-
+    console.log(date);
     const update = {
       status,
       timeSubmitted: date,
@@ -34,7 +44,7 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
 
     };
 
-    fetch(environment.context+'reimbursements/update-status', {
+    fetch(environment.context + 'reimbursements/update-status', {
       body: JSON.stringify(update),
       credentials: 'include',
       headers: {
@@ -69,43 +79,66 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
             {
               this.props.tickets !== null &&
               this.props.tickets.map((ticket: any) =>
-                <div className="card" key={ticket.timeSubmitted}>
-                  <div className="card-header">
-                    <h5 className="card-title">Reimbursement for {ticket.username}</h5>
-                  </div>
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="col-4">Date Submitted: {this.formatTime(ticket.timeSubmitted)}</div>
-                      <div className="col-4">Status: {ticket.status}</div>
-                    </div>
-                    {
-                      ticket.items !== null &&
-                      ticket.items.map((item: any) =>
-                        <div className="container item" key={item.title}>
-                          <div className="row">
-                            <div className="col-4 my-class">Title: {item.title}</div>
-                            <div className="col-4 my-class">Date: {item.timeStamp}</div>
-                            <div className="col-4 my-class">Amount: {item.amount}</div>
-                          </div>
-                          <div className="row description">
-                            <div className="col-8">
-                              <div className="description-head">Description</div>
-                              <div>{item.description}</div>
-                            </div>
-                          </div>
+                <div className="card" key={ticket.timeSubmitted} onClick={this.getItems(ticket.items, ticket.timeSubmitted, ticket.username)}>
+                  <div className="card-header" data-toggle="modal" data-target=".bd-example-modal-lg">
+                    <div className="card-title row">
+                      <div className="col-4">Reimbursement for {ticket.username}</div>
+                      <div className="col-4">
+                        <div className="text-center">
+                          Date Submitted: {this.formatTime(ticket.timeSubmitted)}
                         </div>
-                      )
-                    }
-                  </div>
-                  <div className="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" className="btn btn-primary sign-in-button" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "approved")}>Approved</button>
-                    <button type="button" className="btn btn-primary sign-in-button" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "denied")}>Denied</button>
+                      </div>
+                      <div className="col-4">
+                        <div className="text-right">Status: {ticket.status}</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )
             }
           </div>
         </div>
+
+        {/* <!-- Modal --> */}
+        <div className="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-lg">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Items</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {
+                this.props.items !== null &&
+                this.props.items.map((item: any) =>
+                  <div className="container item" key={item.title}>
+                    <div className="row">
+                      <div className="col-4 my-class">Title: {item.title}</div>
+                      <div className="col-4 my-class">Date: {item.timeStamp}</div>
+                      <div className="col-4 my-class">Amount: {item.amount}</div>
+                    </div>
+                    <div className="row description">
+                      <div className="col-8">
+                        <div className="description-head">Description</div>
+                        <div>{item.description}</div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
+              <div className="modal-footer">
+                <div className="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" className="btn btn-primary sign-in-button" 
+                  onClick={this.statusUpdate(this.props.username, this.props.timeSubmitted, "approved")} data-dismiss="modal">Approved</button>
+                  <button type="button" className="btn btn-primary sign-in-button" 
+                  onClick={this.statusUpdate(this.props.username, this.props.timeSubmitted, "denied")} data-dismiss="modal">Denied</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="row">
           <h3>{this.props.ticketingErrorMessage}</h3>
         </div>
@@ -113,3 +146,9 @@ export class TicketManagerComponent extends React.Component<IProps, any> {
     );
   }
 }
+
+
+{/* <div className="btn-group" role="group" aria-label="Basic example">
+  <button type="button" className="btn btn-primary sign-in-button" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "approved")}>Approved</button>
+  <button type="button" className="btn btn-primary sign-in-button" onClick={this.statusUpdate(ticket.username, ticket.timeSubmitted, "denied")}>Denied</button>
+</div> */}
