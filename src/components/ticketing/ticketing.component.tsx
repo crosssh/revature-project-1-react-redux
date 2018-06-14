@@ -120,7 +120,10 @@ export class TicketingComponent extends React.Component<any, any> {
                 </div>
               </div>
               <button type="button" className="btn btn-primary sign-in-button" onClick={this.add}>Add</button>
+              {
+                this.props.items.length > 0 && 
               <button type="submit" className="btn btn-primary sign-in-button" onClick={this.submit}>Submit Ticket</button>
+              }
             </form>
           </div>
         </div>

@@ -150,6 +150,7 @@ nav {
 }
 
 .card-header {
+  cursor: pointer;
   background-color: #343a40;
   color: #ed8200;
 }
