@@ -5,7 +5,6 @@ import { ticketManagerTypes } from "../actions/ticket-manager/ticket-manager.typ
 
 const initialState: ITicketManager = {
   items: null,
-  ticket: null,
   ticketingErrorMessage: '',
   tickets: null,
   timeSubmitted: 0,

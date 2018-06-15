@@ -42,7 +42,6 @@ export interface ITicketManager {
   items: any
   ticketingErrorMessage: string
   tickets: any
-  ticket: any
   timeSubmitted: number
   username: string
 }
